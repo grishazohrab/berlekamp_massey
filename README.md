@@ -2,6 +2,8 @@
 
 Implementation of Berlekamp Massey algorithm
 
+![The algorithm](imgs/bm.png)
+
 #### Dependency
 `python 3.6 +`
 
