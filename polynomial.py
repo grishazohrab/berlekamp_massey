@@ -40,7 +40,7 @@ class Polynomial:
         c1 = self.coefficients
         c2 = other.coefficients
         if self.mod:
-            res = [sign(sum(t)) * (abs(sum(t)) % self.mod) for t in zip_longest(c1, c2, fillvalue=0)]
+            res = [(sum(t) % self.mod) for t in zip_longest(c1, c2, fillvalue=0)]
         else:
             res = [sum(t) for t in zip_longest(c1, c2, fillvalue=0)]
         return Polynomial(self.mod, res)
@@ -50,7 +50,7 @@ class Polynomial:
         c2 = other.coefficients
 
         if self.mod:
-            res = [sign(t1 - t2) * (abs(t1 - t2) % self.mod) for t1, t2 in zip_longest(c1, c2, fillvalue=0)]
+            res = [((t1 - t2) % self.mod) for t1, t2 in zip_longest(c1, c2, fillvalue=0)]
         else:
             res = [(t1 - t2) for t1, t2 in zip_longest(c1, c2, fillvalue=0)]
         return Polynomial(self.mod, res)
@@ -63,7 +63,7 @@ class Polynomial:
             for valpow, valco in enumerate(_o):
                 res[selfpow + valpow] += selfco * valco
                 if self.mod:
-                    res[selfpow + valpow] = sign(res[selfpow + valpow]) * (abs(res[selfpow + valpow]) % self.mod)
+                    res[selfpow + valpow] = (res[selfpow + valpow] % self.mod)
 
         return Polynomial(self.mod, res)
 
