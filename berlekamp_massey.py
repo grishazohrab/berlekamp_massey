@@ -1,6 +1,12 @@
 from polynomial import Polynomial
 
 
+def div_by_mod(a, b, mod):
+    for ii in range(0, mod):
+        if a == (b*ii) % mod:
+            return ii
+
+
 class BerlekampMassey:
     def __init__(self, mod=2):
         self.mod = mod
@@ -31,7 +37,7 @@ class BerlekampMassey:
                 temp_T = self.C
                 temp_m_c = [0 for _ in range(self.m)]
                 if self.mod:
-                    temp_m_c.append((delta / self.delta_star) % self.mod)
+                    temp_m_c.append(div_by_mod(delta, self.delta_star, self.mod))
                 else:
                     temp_m_c.append(int(delta / self.delta_star))
                 self.C = self.C - (Polynomial(self.mod, temp_m_c) * self.C_star)
